@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
-export default function App() {
+interface MapMarkersExampleProps {}
+
+const MapMarkersExample = ({}: MapMarkersExampleProps) => {
   const [currentPos, setCurrentPos] = useState({
     center: {
       lat: 33.450701,
@@ -99,4 +101,6 @@ export default function App() {
       </div>
     </>
   );
-}
+};
+
+export default MapMarkersExample;

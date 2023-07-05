@@ -6,7 +6,7 @@ import { cn } from '@/utils';
 export const ButtonVariants = cva(
   `
   flex justify-center items-center rounded-xl 
-  text-base font-extrabold transition-all
+  text-base font-bold transition-all
   duration-200 smooth
   `,
   {
@@ -36,8 +36,8 @@ export const ButtonVariants = cva(
     defaultVariants: {
       variant: 'default',
       size: 'default',
-      hovercolor: 'default',
-      hoveropacity: 'active',
+      hovercolor: 'active',
+      hoveropacity: 'default',
       activecolor: 'default',
     },
   }

@@ -12,7 +12,7 @@ const PlanMapPage = ({}: PlanMapPageProps) => {
 
   const [mapLevel, setMapLevel] = useState(8);
   const [isMarkerVisble, setIsMarkerVisible] = useState(true);
-  const [selectedRegion, setSelectedRegion] = useState(regionInfos[region]);
+  const [selectedRegion, setSelectedRegion] = useState(regionInfos[region]); // 타입 해결해주세요 길종늼
 
   // console.log(regionInfos[region]);
 

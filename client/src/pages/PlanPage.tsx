@@ -4,6 +4,7 @@ import { Button, HeadingParagraph } from '@/components';
 import DatePicker from '@/components/common/DatePicker';
 import RegionCard from '@/components/common/RegionCard';
 import { regionInfos, regions } from '@/datas/regions';
+import { Link } from 'react-router-dom';
 
 interface PlanPageProps {}
 
@@ -24,7 +25,7 @@ const PlanPage = ({}: PlanPageProps) => {
         </HeadingParagraph>
         <div className="fixed bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-white from-60% to-white/0 px-12 pb-6 pt-3 md:static md:w-auto md:p-0">
           <Button variant={'primary'} activecolor={'active'} className="w-full">
-            계획 작성하기
+            <Link to={`/plan/map/${selectedRegion}`}>계획 작성하기</Link>
           </Button>
         </div>
       </div>

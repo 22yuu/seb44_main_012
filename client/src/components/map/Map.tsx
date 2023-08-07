@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { InfoWindow } from '@/components/map/InfoWindow';
 import { useMapDetailContext } from '@/contexts/MapDetailProvider';
 import { COLORS } from '@/datas/map-constants';
-import useHoverTimer from '@/hooks/useHoverTimer';
 import { setSelectedPlace } from '@/redux/slices/placeSlice';
 import { RootState } from '@/redux/store';
 import { ScheduledPlaceBase } from '@/types/api/schedules-types';
@@ -44,28 +43,9 @@ const Map = ({
 }: mapProps) => {
   usePreventZoom();
 
-  const { searchPlaceResults, selectedPlace } = useSelector((state: RootState) => state.place);
+  const { searchPlaceResults } = useSelector((state: RootState) => state.place);
+  const { selectedPlace, setSelectedPlace } = useMapDetailContext();
   const dispatch = useDispatch();
-
-  const [onHandleOpen, onHandleClose] = useHoverTimer({ openDelay: 500, closeDelay: 300 });
-
-  const hoverMarkerTimer = useRef(0);
-
-  // const onHoverMarker = (place: ScheduledPlaceBase) => {
-  //   if (type === 'recording') {
-  //     hoverMarkerTimer.current = window.setTimeout(() => {
-  //       onHandleOpen(() => dispatch(setSelectedPlace(place)));
-  //       setPlaceId(place.schedulePlaceId!);
-  //     }, 100);
-  //   }
-  // };
-
-  // const onHoverOutHandler = () => {
-  //   if (type === 'recording') {
-  //     clearTimeout(hoverMarkerTimer.current);
-  //     onHandleClose(() => dispatch(setSelectedPlace(null)));
-  //   }
-  // };
 
   useEffect(() => {
     if (setCenterPosition && selectedPlace) {
@@ -87,7 +67,7 @@ const Map = ({
       level={mapLevel} // 지도의 확대 레벨
       className={cn(['h-screen w-screen', className])}
       isPanto
-      onClick={() => dispatch(setSelectedPlace(null))}
+      onClick={() => setSelectedPlace(null)}
       onDragEnd={(
         target // 검색 지점 변경 용도
       ) =>
@@ -118,11 +98,7 @@ const Map = ({
                   height: 32,
                 },
               }}
-              onClick={() => {
-                dispatch(setSelectedPlace(place));
-              }}
-              // onMouseOver={() => onHoverMarker(place)}
-              // onMouseOut={() => onHoverOutHandler()}
+              onClick={() => setSelectedPlace(place)}
             />
           ))
         )}
@@ -136,18 +112,16 @@ const Map = ({
               lng: parseFloat(result.x),
             }}
             onClick={() =>
-              dispatch(
-                setSelectedPlace({
-                  apiId: parseInt(result.id),
-                  name: result.place_name,
-                  address: result.address_name,
-                  latitude: result.y,
-                  longitude: result.x,
-                  phone: result.phone,
-                  category: result.category_group_code as CategoryGroupCode,
-                  bookmark: false,
-                })
-              )
+              setSelectedPlace({
+                apiId: parseInt(result.id),
+                name: result.place_name,
+                address: result.address_name,
+                latitude: result.y,
+                longitude: result.x,
+                phone: result.phone,
+                category: result.category_group_code as CategoryGroupCode,
+                bookmark: false,
+              })
             }
             image={{
               src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png',
@@ -192,7 +166,7 @@ const Map = ({
             category={selectedPlace.category}
             phone={selectedPlace.phone}
             isBookmarked={selectedPlace.bookmark}
-            onClickClose={() => dispatch(setSelectedPlace(null))}
+            onClickClose={() => setSelectedPlace(null)}
             className="absolute bottom-8 -translate-x-1/2"
           />
         </CustomOverlayMap>
@@ -227,7 +201,7 @@ const Map = ({
                   lat: parseFloat(place.latitude),
                   lng: parseFloat(place.longitude),
                 }}
-                onClick={() => dispatch(setSelectedPlace(place))}
+                onClick={() => setSelectedPlace(place)}
                 image={{
                   src: '/markers/marker.svg',
                   size: {

@@ -16,13 +16,15 @@ import Confirm from '@/components/common/Confirm';
 import useToast from '@/hooks/useToast';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { ScheduledPlaceBase } from '@/types/api/schedules-types';
 
 type Props = {
+  selectedPlace: ScheduledPlaceBase;
   recordRefetch: () => void;
 };
 
-const Record = ({ recordRefetch }: Props) => {
-  const { selectedPlace } = useSelector((state: RootState) => state.place);
+const Record = ({ selectedPlace, recordRefetch }: Props) => {
+  // const { selectedPlace } = useSelector((state: RootState) => state.place);
   const { records } = useSelector((state: RootState) => state.records);
 
   const [imgs, setImgs] = useState<string[]>([]);

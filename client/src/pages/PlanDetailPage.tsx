@@ -21,18 +21,19 @@ const PlanDetailPage = ({}: PlanDetailPageProps) => {
   const { id } = useParams();
   // const { data, isLoading, error } = usePlanQuery(id!);
   const { schedules } = useSelector((state: RootState) => state.schedule);
-  const { selectedPlace } = useSelector((state: RootState) => state.place);
+  // const { selectedPlace } = useSelector((state: RootState) => state.place);
   const { data, isLoading, error, refetch } = useGetRecords(id!);
 
   const [mapLevel, setMapLevel] = useState(8);
 
-  const { setScheduleInfo } = useMapDetailContext();
+  const { selectedPlace, setSelectedPlace, setScheduleInfo } = useMapDetailContext();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     setScheduleInfo(data!);
-    dispatch(setSelectedPlace(null));
+    // dispatch(setSelectedPlace(null));
+    // setSelectedPlace(null);
     refetch();
   }, []);
 
@@ -54,7 +55,7 @@ const PlanDetailPage = ({}: PlanDetailPageProps) => {
             showPolyline
           />
           <MenuButtons />
-          {selectedPlace && <RecordPanel refetch={refetch} />}
+          {selectedPlace && <RecordPanel selectedPlace={selectedPlace} refetch={refetch} />}
 
           <SidePanel position={'right'}>
             <TripInfo

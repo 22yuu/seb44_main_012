@@ -19,6 +19,7 @@ import MypageLayout from './MypageLayout';
 import LoadingPage from './pages/LoadingPage';
 import NotFound from './pages/NotFound';
 import OauthRedirect from './pages/OauthRedirect';
+import MapDetailProvider from '@/contexts/MapDetailProvider';
 
 const Home = lazy(() => import('./pages/Home'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
@@ -67,8 +68,10 @@ const router = createBrowserRouter([
     path: 'plan/map/:id',
     element: (
       <>
-        <ToastContainer />
-        <PlanMapPage />
+        <MapDetailProvider>
+          <ToastContainer />
+          <PlanMapPage />
+        </MapDetailProvider>
       </>
     ),
   },
@@ -76,8 +79,10 @@ const router = createBrowserRouter([
     path: 'plan/detail/:id',
     element: (
       <>
-        <ToastContainer />
-        <PlanDetailPage />
+        <MapDetailProvider>
+          <ToastContainer />
+          <PlanDetailPage />
+        </MapDetailProvider>
       </>
     ),
   },

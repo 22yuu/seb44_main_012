@@ -3,16 +3,18 @@ import Record from './Record';
 import NoRecord from './NoRecord';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { ScheduledPlaceBase } from '@/types/api/schedules-types';
 
 // const Record = lazy(() => import('@/components/page-components/plan-detail/Record'));
 // const NoRecord = lazy(() => import('@/components/page-components/plan-detail/NoRecord'));
 
 type Props = {
+  selectedPlace: ScheduledPlaceBase;
   refetch: () => void;
 };
 
-const RecordPanel = ({ refetch }: Props) => {
-  const { selectedPlace } = useSelector((state: RootState) => state.place);
+const RecordPanel = ({ selectedPlace, refetch }: Props) => {
+  // const { selectedPlace } = useSelector((state: RootState) => state.place);
   const { records } = useSelector((state: RootState) => state.records);
 
   return (
@@ -21,10 +23,10 @@ const RecordPanel = ({ refetch }: Props) => {
         {records[selectedPlace?.schedulePlaceId!] &&
         records[selectedPlace?.schedulePlaceId!].length > 0 ? (
           <>
-            <Record recordRefetch={refetch} />
+            <Record selectedPlace={selectedPlace} recordRefetch={refetch} />
           </>
         ) : (
-          <NoRecord refetch={refetch} />
+          <NoRecord selectedPlace={selectedPlace} refetch={refetch} />
         )}
       </div>
     </>

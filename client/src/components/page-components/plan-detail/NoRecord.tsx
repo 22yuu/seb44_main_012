@@ -6,13 +6,15 @@ import WriteModal from '../../common/modals/WriteModal';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { useEffect } from 'react';
+import { ScheduledPlaceBase } from '@/types/api/schedules-types';
 
 type Props = {
+  selectedPlace: ScheduledPlaceBase;
   refetch: () => void;
 };
 
-const NoRecord = ({ refetch }: Props) => {
-  const { selectedPlace } = useSelector((state: RootState) => state.place);
+const NoRecord = ({ selectedPlace, refetch }: Props) => {
+  // const { selectedPlace } = useSelector((state: RootState) => state.place);
 
   const { schedulePlaceId, name } = selectedPlace!; // null이 될 경우?
 

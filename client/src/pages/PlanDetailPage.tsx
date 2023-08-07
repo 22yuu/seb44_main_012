@@ -26,14 +26,13 @@ const PlanDetailPage = ({}: PlanDetailPageProps) => {
 
   const [mapLevel, setMapLevel] = useState(8);
 
-  const { selectedPlace, setSelectedPlace, setScheduleInfo } = useMapDetailContext();
+  const { selectedPlace, setScheduleInfo } = useMapDetailContext();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     setScheduleInfo(data!);
     // dispatch(setSelectedPlace(null));
-    // setSelectedPlace(null);
     refetch();
   }, []);
 

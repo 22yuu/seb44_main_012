@@ -32,7 +32,7 @@ const PlanDetailPage = ({}: PlanDetailPageProps) => {
 
   useEffect(() => {
     setScheduleInfo(data!);
-    dispatch(setSelectedPlace(null));
+    // dispatch(setSelectedPlace(null));
     refetch();
   }, []);
 

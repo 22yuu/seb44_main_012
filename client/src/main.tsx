@@ -19,7 +19,7 @@ import MypageLayout from './MypageLayout';
 import LoadingPage from './pages/LoadingPage';
 import NotFound from './pages/NotFound';
 import OauthRedirect from './pages/OauthRedirect';
-import MapDetailProvider from '@/contexts/MapDetailProvider';
+import MapScheduleProvider from '@/contexts/MapScheduleProvider';
 
 const Home = lazy(() => import('./pages/Home'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
@@ -34,7 +34,6 @@ const FootPrintPage = lazy(() => import('./pages/FootPrintPage'));
 const PlanMapPage = lazy(() => import('./pages/PlanMapPage'));
 const PlanDetailPage = lazy(() => import('./pages/PlanDetailPage'));
 const Bookmark = lazy(() => import('./pages/Bookmark'));
-const EventPage = lazy(() => import('./pages/EventPage'));
 
 const router = createBrowserRouter([
   {
@@ -49,7 +48,6 @@ const router = createBrowserRouter([
       { path: 'login/password', element: <ResetPasswordPage /> },
       { path: 'plan', element: <PlanPage /> },
       { path: 'loading', element: <LoadingPage /> },
-      { path: 'event', element: <EventPage /> },
       {
         path: 'mypage/',
         element: <MypageLayout />,
@@ -68,10 +66,10 @@ const router = createBrowserRouter([
     path: 'plan/map/:id',
     element: (
       <>
-        <MapDetailProvider>
+        <MapScheduleProvider>
           <ToastContainer />
           <PlanMapPage />
-        </MapDetailProvider>
+        </MapScheduleProvider>
       </>
     ),
   },
@@ -79,10 +77,10 @@ const router = createBrowserRouter([
     path: 'plan/detail/:id',
     element: (
       <>
-        <MapDetailProvider>
+        <MapScheduleProvider>
           <ToastContainer />
           <PlanDetailPage />
-        </MapDetailProvider>
+        </MapScheduleProvider>
       </>
     ),
   },

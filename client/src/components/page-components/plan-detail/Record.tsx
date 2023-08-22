@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { ReactComponent as MapMarker } from '@/assets/icons/map-marker.svg';
 
 import ImageSlider from '../../common/ImageSlider';
-import { useMapDetailContext } from '@/contexts/MapDetailProvider';
+import { useMapDetailContext } from '@/contexts/MapScheduleProvider';
 import { regionInfos } from '@/datas/regions';
 import TextContent from '@/components/common/TextContent';
 import { getFromNow } from '@/utils/date';

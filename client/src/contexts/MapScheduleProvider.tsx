@@ -7,33 +7,30 @@ type Props = {
 };
 
 type ContextProps = {
-  scheduleInfo: Schedule;
-  setScheduleInfo: React.Dispatch<React.SetStateAction<Schedule>>;
+  scheduleInfo: Schedule | null;
+  setScheduleInfo: React.Dispatch<React.SetStateAction<Schedule | null>>;
   selectedPlace: ScheduledPlaceBase | null;
   setSelectedPlace: React.Dispatch<React.SetStateAction<ScheduledPlaceBase | null>>;
 };
 
-const initScheduleInfo = {} as Schedule;
-const initSelectedPlace = {} as ScheduledPlaceBase;
-
-const MapDetailContext = createContext<ContextProps>({
-  scheduleInfo: initScheduleInfo,
+const MapScheduleContext = createContext<ContextProps>({
+  scheduleInfo: null,
   setScheduleInfo: () => {},
   selectedPlace: null,
   setSelectedPlace: () => {},
 });
 
-export const useMapDetailContext = () => {
-  return useContext(MapDetailContext);
+export const useMapScheduleContext = () => {
+  return useContext(MapScheduleContext);
 };
 
-const MapDetailProvider = ({ children }: Props) => {
+const MapScheduleProvider = ({ children }: Props) => {
   // 현재 일정의 정보
-  const [scheduleInfo, setScheduleInfo] = useState<Schedule>(initScheduleInfo);
+  const [scheduleInfo, setScheduleInfo] = useState<Schedule | null>(null);
   const [selectedPlace, setSelectedPlace] = useState<ScheduledPlaceBase | null>(null);
 
   return (
-    <MapDetailContext.Provider
+    <MapScheduleContext.Provider
       value={{
         scheduleInfo,
         setScheduleInfo,
@@ -42,8 +39,8 @@ const MapDetailProvider = ({ children }: Props) => {
       }}
     >
       {children}
-    </MapDetailContext.Provider>
+    </MapScheduleContext.Provider>
   );
 };
 
-export default MapDetailProvider;
+export default MapScheduleProvider;

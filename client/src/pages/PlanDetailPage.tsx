@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { getRegionCenterLat, getRegionCenterLng } from '@/utils/map';
 
 import RecordPanel from '@/components/page-components/plan-detail/RecordPanel';
-import { useMapDetailContext } from '@/contexts/MapDetailProvider';
+import { useMapScheduleContext } from '@/contexts/MapScheduleProvider';
 import useGetRecords from '@/queries/record/useGetRecords';
 import { setSelectedPlace } from '@/redux/slices/placeSlice';
 
@@ -26,7 +26,7 @@ const PlanDetailPage = ({}: PlanDetailPageProps) => {
 
   const [mapLevel, setMapLevel] = useState(8);
 
-  const { selectedPlace, setScheduleInfo } = useMapDetailContext();
+  const { selectedPlace, setScheduleInfo } = useMapScheduleContext();
 
   const dispatch = useDispatch();
 

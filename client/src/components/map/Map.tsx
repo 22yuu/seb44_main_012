@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import { InfoWindow } from '@/components/map/InfoWindow';
-import { useMapDetailContext } from '@/contexts/MapDetailProvider';
+import { useMapScheduleContext } from '@/contexts/MapScheduleProvider';
 import { COLORS } from '@/datas/map-constants';
 import { setSelectedPlace } from '@/redux/slices/placeSlice';
 import { RootState } from '@/redux/store';
@@ -44,7 +44,7 @@ const Map = ({
   usePreventZoom();
 
   const { searchPlaceResults } = useSelector((state: RootState) => state.place);
-  const { selectedPlace, setSelectedPlace } = useMapDetailContext();
+  const { selectedPlace, setSelectedPlace } = useMapScheduleContext();
   const dispatch = useDispatch();
 
   useEffect(() => {
